@@ -1,0 +1,27 @@
+{
+  "name": "shakalov",
+  "version": "1.0.0",
+  "description": "Detecting low quality document images",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "watchify src/index.js -o build/bundle.js | http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavaGrinko/shakalov.git"
+  },
+  "author": "Artem Grinko <javagrinko@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JavaGrinko/shakalov/issues"
+  },
+  "homepage": "https://github.com/JavaGrinko/shakalov#readme",
+  "devDependencies": {
+    "watchify": "^3.11.0"
+  },
+  "dependencies": {
+    "synaptic": "^1.1.4",
+    "tesseract.js": "^1.0.10"
+  }
+}

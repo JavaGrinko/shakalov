@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <script src="../build/bundle.js"></script>
+</head>
+
+<body>
+    <div id="good">
+        <h3>Годные паспорта</h3>
+        <input type="file" onchange="propagate(this.files, 1)" multiple/>
+    </div>
+    <div id="bad">
+        <h3>Плохие паспорта</h3>
+        <input type="file" onchange="propagate(this.files, 0)" multiple/>
+    </div>
+    <div>
+        <button onclick="training()">Обучить сеть</button>
+    </div>
+
+    <div id="test">
+        <h3>Контрольные изображения</h3>
+        <input type="file" onchange="activate(this.files)" />
+    </div>
+</body>
+
+</html>
