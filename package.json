@@ -4,7 +4,7 @@
   "description": "Detecting low quality document images",
   "main": "src/index.js",
   "scripts": {
-    "start": "watchify src/index.js -o build/bundle.js | http-server",
+    "start": "watchify src/index.js -o build/bundle.js --standalone Shakalov | node sample/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,9 +18,14 @@
   },
   "homepage": "https://github.com/JavaGrinko/shakalov#readme",
   "devDependencies": {
+    "chart.js": "^2.7.2",
+    "multer": "^1.3.0",
+    "request": "^2.85.0",
     "watchify": "^3.11.0"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
     "synaptic": "^1.1.4",
     "tesseract.js": "^1.0.10"
   }
