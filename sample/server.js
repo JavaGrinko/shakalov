@@ -1,13 +1,23 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-let multer = require('multer');
-let upload = multer();
-var Shakalov = require('../build/bundle');
+const express = require('express');
+const formData = require("express-form-data");
+const Shakalov = require('../build/bundle');
 
 var app = express();
-var shakalov = new Shakalov();
 
-app.use(bodyParser());
+const options = {
+    autoClean: true
+};
+
+// parse data with connect-multiparty. 
+app.use(formData.parse(options));
+// clear from the request and delete all empty files (size == 0)
+app.use(formData.format());
+// change file objects to stream.Readable 
+app.use(formData.stream());
+// union body and files
+app.use(formData.union());
+
+var shakalov = new Shakalov();
 app.use(express.static('sample/static'));
 
 app.get('/training', (req, res) => {
@@ -15,15 +25,15 @@ app.get('/training', (req, res) => {
     res.sendStatus(200);
 });
 
-app.post('/propagation', upload.fields([]), (req, res) => {
-    let formData = req.body;
-    console.log('form data', formData);
-    console.log(req.query.answer);
+app.post('/propagation', (req, res) => {
+    shakalov.propagate(Object.keys(req.files)
+        .map(key => req.files[key]), req.query.answer)
+        .map(readStream => readStream.read()),
     res.sendStatus(200);
 });
 
 app.post('/activate', (req, res) => {
-    
+
 });
 
 app.listen(3000, function () {
